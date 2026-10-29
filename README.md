@@ -35,8 +35,35 @@ Sitio web oficial, catálogo interactivo y motor de pedidos de alta conversión 
 
 ---
 
+## 📂 Arquitectura y Propuestas para el Cliente (Poldev Estudio)
+
+Este proyecto está concebido bajo una **estrategia de dos propuestas escalables** para presentar a los dueños de La Papota:
+
+### 1️⃣ Propuesta Básica — Landing de Presencia Local & Conversión Directa (`index.html`)
+- **Objetivo:** Dar una imagen profesional, consolidar la identidad visual (mascota HD, fotos reales del local) y maximizar visitas presenciales y consultas rápidas.
+- **Características:**
+  - Ficha oficial de Google Maps con calificación real `4.3 ★`, horarios y botón GPS *"Cómo llegar"*.
+  - Botón flotante permanente de WhatsApp y llamadas a la acción directas.
+  - Sección de Menú con llamado directo a la carta.
+  - Zero costo de mantenimiento ni servidores complejos.
+
+### 2️⃣ Propuesta Pro — Menú Digital Interactivo & Motor de Pedidos Autónomo (`menu.html`)
+- **Objetivo:** Agilizar las ventas en horas pico permitiendo que el cliente arme su propio pedido sin demorar al personal de mostrador.
+- **Características:**
+  - **Filtros por categoría:** Todo el menú, Hamburguesas, Papas rústicas, Lomitos & Milas, Super panchos, Bebidas.
+  - **Carrito reactivo en tiempo real:** Selector de cantidades `[+]` / `[-]`, subtotales y total dinámico con persistencia local (`localStorage`).
+  - **Modal de Checkout completo:**
+    - Modalidad de entrega: *Envío a Domicilio (con campo de dirección)* o *Retiro en el Local (Take Away)*.
+    - Opciones de pago: *Efectivo (con campo para indicar con cuánto abona y calcular vuelto)*, *Transferencia Bancaria*, o *Mercado Pago*.
+    - Campo de aclaraciones/notas para la cocina (ej: "sin cebolla", "con aderezo aparte").
+  - **Generador de Comanda a WhatsApp:** Formatea automáticamente un ticket estructurado y prolijo que se envía al WhatsApp oficial del local (`+54 9 11 6415-8057`) en 1 solo clic.
+  - **100% Serverless & Cero Costo Fijo:** No requiere hosting con base de datos, no sufre caídas de servidor y se adapta perfectamente al celular o computadora que el comercio ya usa en la caja.
+
+---
+
 ## 📂 Archivos del Proyecto
-- `index.html`: Archivo principal de la maqueta completa, limpia y funcional (100% independiente, sin dependencias pesadas).
+- `index.html`: Landing institucional / comercial de alta conversión (Propuesta 1).
+- `menu.html`: Menú digital interactivo con carrito y generador de comanda a WhatsApp (Propuesta 2).
 - `papa_logo.png`: Isotipo oficial de la mascota remasterizado en HD (1024x1024) con fondo transparente.
 - `local_papota.jpg`: Fotografía real de la fachada y patio iluminado del local en Del Viso.
 - `README.md`: Documentación técnica y comercial de la maqueta.
