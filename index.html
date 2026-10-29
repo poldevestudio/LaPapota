@@ -236,6 +236,30 @@
             color: var(--gold);
         }
 
+        .button-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid var(--orange);
+            box-shadow: none;
+            padding: 12px 28px;
+            font-size: 0.92rem;
+            letter-spacing: 0.05em;
+        }
+
+        .button-outline:hover {
+            background: rgba(255, 100, 45, 0.12);
+            color: #ffffff;
+            border-color: #ff7642;
+            box-shadow: 0 0 18px rgba(255, 100, 45, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .button-outline:active {
+            transform: translateY(1px);
+            background: rgba(255, 100, 45, 0.22);
+            box-shadow: none;
+        }
+
         /* ==========================================================================
            HERO SECTION
            ========================================================================== */
@@ -1395,11 +1419,8 @@
                     Hamburguesas smash artesanales que se hacen notar. Papas bien crocantes y salsas de la casa bien chorreantes como el pelo de tu ex.
                 </p>
                 <div class="hero-buttons">
-                    <a class="button" href="menu.html">
-                        ARMÁ TU PEDIDO <span>🛒</span>
-                    </a>
-                    <a class="button button-secondary" href="https://wa.me/5491164158057?text=Hola%20La%20Papota!%20Quisiera%20consultar%20el%20men%C3%BA%20de%20hoy" target="_blank" rel="noopener noreferrer">
-                        WHATSAPP ↗
+                    <a class="button button-outline" href="menu.html">
+                        PEDÍ <span>↗</span>
                     </a>
                 </div>
                 <div class="mini-proof">
