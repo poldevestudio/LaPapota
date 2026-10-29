@@ -738,36 +738,27 @@
         }
 
         .story-art {
-            min-height: 400px;
+            min-height: 420px;
+            height: 100%;
             position: relative;
-            display: grid;
-            place-items: center;
-            background: radial-gradient(circle at center, #4d2a19 0%, #1e1713 70%);
             border: 1px solid var(--line-light);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            padding: 30px;
+            box-shadow: var(--shadow-card);
+            background: #171513;
         }
 
-        .story-art::before {
-            content: "LP";
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            font-size: 16rem;
-            color: rgba(255, 255, 255, 0.03);
-            position: absolute;
-            pointer-events: none;
+        .story-img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
         }
 
-        .story-art .badge-big {
-            font-size: 6.5rem;
-            filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.5));
-            animation: pulse-sm 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-sm {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .story-art:hover .story-img {
+            transform: scale(1.04);
         }
 
         .story-art .side-note {
@@ -783,7 +774,8 @@
             font-weight: 700;
             letter-spacing: 0.04em;
             transform: rotate(-3deg);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+            z-index: 2;
         }
 
         .story-copy h2 {
@@ -1316,7 +1308,7 @@
                 width: 100%;
             }
 
-            .story-art {
+            .story-art, .story-img {
                 min-height: 280px;
             }
 
@@ -1538,7 +1530,7 @@
         <section class="section-wrap" id="historia" aria-labelledby="historia-title">
             <div class="story">
                 <div class="story-art">
-                    <span class="badge-big" aria-hidden="true">🍔</span>
+                    <img src="local_papota.jpg" alt="Local La Papota iluminado de noche en Del Viso" class="story-img" loading="lazy">
                     <span class="side-note">ACÁ SE COME CON GANAS.</span>
                 </div>
                 <div class="story-copy">

@@ -37,6 +37,8 @@ Sitio web oficial, catálogo interactivo y motor de pedidos de alta conversión 
 
 ## 📂 Archivos del Proyecto
 - `index.html`: Archivo principal de la maqueta completa, limpia y funcional (100% independiente, sin dependencias pesadas).
+- `papa_logo.png`: Isotipo oficial de la mascota remasterizado en HD (1024x1024) con fondo transparente.
+- `local_papota.jpg`: Fotografía real de la fachada y patio iluminado del local en Del Viso.
 - `README.md`: Documentación técnica y comercial de la maqueta.
 
 ---
