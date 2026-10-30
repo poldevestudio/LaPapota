@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#11100f">
     <title>Menú Online & Pedidos — La Papota | Del Viso</title>
     <meta name="description" content="Armá tu pedido online en La Papota. Hamburguesas smash, lomitos, super panchos, milanesas y papas rústicas. ¡Envío directo a WhatsApp!">
@@ -47,6 +47,10 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            touch-action: pan-y;
         }
 
         body {
@@ -55,7 +59,10 @@
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 15px;
             line-height: 1.5;
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
+            touch-action: pan-y;
             padding-bottom: 110px; /* Espacio para barra flotante de carrito */
             -webkit-font-smoothing: antialiased;
         }
@@ -195,8 +202,9 @@
             font-family: 'Oswald', sans-serif;
             font-size: clamp(2.2rem, 4.5vw, 3.4rem);
             text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 6px;
+            line-height: 1.15;
+            margin-top: 6px;
+            margin-bottom: 10px;
         }
 
         .menu-hero-copy h1 span {
@@ -222,6 +230,14 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-bottom: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .local-status-pill.is-closed {
+            background: rgba(255, 77, 79, 0.12);
+            border-color: rgba(255, 77, 79, 0.4);
+            color: #ff5252;
         }
 
         .status-dot {
@@ -231,6 +247,12 @@
             background: var(--wa-green);
             box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.3);
             animation: pulse-dot 2s infinite;
+        }
+
+        .local-status-pill.is-closed .status-dot {
+            background: #ff5252;
+            box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.25);
+            animation: none;
         }
 
         @keyframes pulse-dot {
@@ -905,9 +927,9 @@
     <!-- Hero Compacto del Menú -->
     <section class="menu-hero">
         <div class="menu-hero-copy">
-            <div class="local-status-pill">
+            <div class="local-status-pill" id="localStatusPill">
                 <span class="status-dot"></span>
-                <span>Cocina Abierta · Del Viso</span>
+                <span id="statusText">Cocina Abierta · Del Viso</span>
             </div>
             <h1>Armá Tu <span>Pedido</span></h1>
             <p>Elegí tus platos, sumá los adicionales y te enviamos la comanda armada al WhatsApp del local para despachar al instante.</p>
@@ -1524,9 +1546,40 @@
             window.open(waUrl, '_blank');
         }
 
+        // Verificar estado de cocina en tiempo real (Horario oficial: 11:00 a 00:00 hs todos los días)
+        function checkBusinessHours() {
+            try {
+                const now = new Date();
+                const argOptions = { timeZone: 'America/Argentina/Buenos_Aires', hour: 'numeric', minute: 'numeric', hour12: false };
+                const formatter = new Intl.DateTimeFormat('es-AR', argOptions);
+                const parts = formatter.formatToParts(now);
+                const hour = parseInt(parts.find(p => p.type === 'hour').value, 10);
+
+                const pill = document.getElementById('localStatusPill');
+                const text = document.getElementById('statusText');
+
+                if (!pill || !text) return;
+
+                // Abierto de 11:00 a 23:59 (00:00 medianoche)
+                const isOpen = (hour >= 11);
+
+                if (isOpen) {
+                    pill.classList.remove('is-closed');
+                    text.textContent = 'Cocina Abierta · Del Viso';
+                } else {
+                    pill.classList.add('is-closed');
+                    text.textContent = 'Cocina Cerrada · Abre 11:00 hs';
+                }
+            } catch (e) {
+                console.log('Error al verificar horarios:', e);
+            }
+        }
+
         // Iniciar
         document.addEventListener('DOMContentLoaded', () => {
             renderMenu();
+            checkBusinessHours();
+            setInterval(checkBusinessHours, 60000);
         });
     </script>
 
