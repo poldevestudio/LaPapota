@@ -194,6 +194,205 @@
             color: var(--gold);
         }
 
+        /* ==========================================================================
+           MENÚ MOBILE & HAMBURGUESA
+           ========================================================================== */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 9px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--line);
+            cursor: pointer;
+            z-index: 102;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 100, 45, 0.4);
+        }
+
+        .hamburger-btn .bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--cream);
+            border-radius: 2px;
+            transition: transform 0.28s ease, opacity 0.2s ease, background-color 0.2s ease;
+            transform-origin: center;
+        }
+
+        /* Animación a 'X' cuando el menú está abierto */
+        .hamburger-btn.is-active {
+            background: rgba(255, 100, 45, 0.15);
+            border-color: var(--orange);
+        }
+
+        .hamburger-btn.is-active .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+            background-color: var(--orange);
+        }
+
+        .hamburger-btn.is-active .bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger-btn.is-active .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+            background-color: var(--orange);
+        }
+
+        /* Fondo Oscuro / Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 76px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 76px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 98;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-nav-overlay.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Drawer Desplegable */
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 76px;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 16, 14, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(255, 100, 45, 0.35);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
+            z-index: 99;
+            transform: translateY(-110%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.32s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 5% 24px;
+            gap: 12px;
+            max-height: calc(100vh - 86px);
+            overflow-y: auto;
+        }
+
+        .mobile-nav-drawer.is-active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            color: var(--cream);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .mobile-link:hover, .mobile-link:active {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--gold);
+        }
+
+        .mobile-link-highlight {
+            background: rgba(255, 100, 45, 0.12);
+            border-color: rgba(255, 100, 45, 0.35);
+            color: var(--gold);
+        }
+
+        .mobile-link-highlight:hover {
+            background: rgba(255, 100, 45, 0.22);
+            border-color: var(--orange);
+        }
+
+        .mobile-link-wa {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: rgba(37, 211, 102, 0.3);
+            color: var(--wa-green);
+        }
+
+        .mobile-link-wa:hover {
+            background: rgba(37, 211, 102, 0.2);
+            border-color: var(--wa-green);
+            color: #ffffff;
+        }
+
+        .mobile-link-icon {
+            font-size: 1.15rem;
+            margin-right: 12px;
+        }
+
+        .mobile-link > span:nth-child(2) {
+            flex: 1;
+        }
+
+        .mobile-link-arrow {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .mobile-nav-footer {
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mobile-nav-footer .tag-status {
+            color: var(--wa-green);
+            font-weight: 700;
+        }
+
+        @media (max-width: 820px) {
+            .desktop-nav {
+                display: none !important;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+        }
+
         /* Botones Generales */
         .button, .nav-cta {
             display: inline-flex;
@@ -1237,13 +1436,10 @@
                 padding: 0 4%;
             }
 
-            nav > a:not(.nav-cta) {
-                display: none;
-            }
-
-            .nav-cta {
-                padding: 9px 13px;
-                font-size: 0.74rem;
+            .mobile-nav-overlay,
+            .mobile-nav-drawer {
+                top: 66px;
+                height: calc(100vh - 66px);
             }
 
             .logo {
@@ -1399,12 +1595,48 @@
             <img src="papa_logo.png" alt="Mascota La Papota" class="logo-img">
             <span>LA PAPOTA<span style="color:var(--orange)">.</span></span>
         </a>
-        <nav aria-label="Navegación principal">
+        <nav class="desktop-nav" aria-label="Navegación principal">
             <a href="menu.html" style="color:var(--gold); font-weight:700;">🛒 MENÚ ONLINE</a>
             <a href="#historia">NUESTRA ONDA</a>
             <a href="#ubicacion">CÓMO LLEGAR</a>
         </nav>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
     </header>
+
+    <!-- Menú Desplegable Mobile -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+    <div class="mobile-nav-drawer" id="mobileMenu" aria-label="Menú móvil" aria-hidden="true">
+        <div class="mobile-nav-links">
+            <a href="menu.html" class="mobile-link mobile-link-highlight">
+                <span class="mobile-link-icon">🛒</span>
+                <span>Menú Online & Pedidos</span>
+                <span class="mobile-link-arrow">↗</span>
+            </a>
+            <a href="#historia" class="mobile-link">
+                <span class="mobile-link-icon">🔥</span>
+                <span>Nuestra Onda</span>
+                <span class="mobile-link-arrow">↓</span>
+            </a>
+            <a href="#ubicacion" class="mobile-link">
+                <span class="mobile-link-icon">📍</span>
+                <span>Cómo Llegar (GPS)</span>
+                <span class="mobile-link-arrow">↓</span>
+            </a>
+            <a href="https://wa.me/5491164158057?text=Hola%20La%20Papota!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer" class="mobile-link mobile-link-wa">
+                <span class="mobile-link-icon">💬</span>
+                <span>Pedir por WhatsApp</span>
+                <span class="mobile-link-arrow">↗</span>
+            </a>
+        </div>
+        <div class="mobile-nav-footer">
+            <span>Av. Constitución 371 · Del Viso</span>
+            <span class="tag-status">Abierto 11:00 a 00:00 hs</span>
+        </div>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -1422,14 +1654,9 @@
                     <a class="button button-outline" href="menu.html">
                         PEDÍ <span>↗</span>
                     </a>
-                </div>
+                </div>  
                 <div class="mini-proof">
-                    <div class="avatars">
-                        <span>★</span>
-                        <span>🍔</span>
-                        <span>🔥</span>
-                    </div>
-                    <span>⭐ 4.3 en Google Maps · Carne 100% vacuna · Del Viso</span>
+                    <span> 4.3 ⭐ · Carne 100% vacuna ·</span>
                 </div>
             </div>
 
@@ -1474,11 +1701,8 @@
 
             <div style="background: linear-gradient(135deg, #1b1917 0%, #131210 100%); border: 1px solid rgba(255, 100, 45, 0.25); border-radius: var(--radius-lg); padding: 36px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 16px 36px rgba(0,0,0,0.4);">
                 <div style="max-width: 580px;">
-                    <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 100, 45, 0.12); color: var(--orange); border: 1px solid rgba(255, 100, 45, 0.3); padding: 5px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-                        ✨ Menú Interactivo & Delivery
-                    </span>
                     <h3 style="font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem); text-transform: uppercase; margin-bottom: 10px; color: var(--cream); line-height: 1.1;">
-                        Armá tu pedido online con carrito
+                        Armá tu pedido ACA
                     </h3>
                     <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
                         Elegí tus burgers smash, papas rústicas, lomitos, super panchos y bebidas. Elegí si querés envío a domicilio o retiro en el local, tu método de pago y mandá la comanda lista a nuestro WhatsApp en un solo clic.
@@ -1486,7 +1710,7 @@
                 </div>
                 <div>
                     <a href="menu.html" class="button" style="padding: 16px 32px; font-size: 1rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 6px 0 var(--orange-dark);">
-                        <span>VER CARTA & ARMAR PEDIDO</span>
+                        <span>ARMAR PEDIDO</span>
                         <span>🛒</span>
                     </a>
                 </div>
@@ -1494,17 +1718,6 @@
         </section>
 
         <!-- Banner Destacado -->
-        <div class="feature-banner">
-            <div class="banner-inner">
-                <div>
-                    <h2>Tu antojo no se negocia.</h2>
-                    <p>¿Almuerzo al paso, cena con amigos o noche de relax? Escribinos por WhatsApp y coordinamos tu pedido para retirar o recibir en Del Viso.</p>
-                </div>
-                <a class="button" href="https://wa.me/5491164158057?text=Hola%20La%20Papota!%20Quiero%20pedir%20la%20promo%20del%20d%C3%ADa" target="_blank" rel="noopener noreferrer">
-                    QUIERO MI PAPOTA ↗
-                </a>
-            </div>
-        </div>
 
         <!-- Historia / Nuestra Onda -->
         <section class="section-wrap" id="historia" aria-labelledby="historia-title">
@@ -1517,16 +1730,15 @@
                     <span class="eyebrow">ESTO ES LA PAPOTA</span>
                     <h2 id="historia-title">BUENAS BURGERS.<br><span>MEJORES MOMENTOS.</span></h2>
                     <p>
-                        Somos de los que creen que una hamburguesa bien hecha te arregla cualquier día. En La Papota no hay fórmulas complicadas: materia prima de primera, medallones cocidos en el punto justo, pan esponjoso y papas crocantes hasta el último bocado.
+                        Creemos que una hamburguesa bien hecha te arregla cualquier día. En La Papota no hay fórmulas complicadas: materia prima de primera, medallones en el punto justo, pan esponjoso y papas crocantes hasta el último bocado.
                     </p>
                     <p>
-                        Pasá por nuestro local en Del Viso o pedí desde tu sillón. Del resto nos ocupamos nosotros.
+                        Pasá por el local o pedí desde tu sillón. Del resto nos ocupamos nosotros.
                     </p>
                     <div class="perks">
                         <span class="perk-pill">✳ Carne de Novillo Seleccionada</span>
                         <span class="perk-pill">✳ Pan Brioche Horneado Diario</span>
-                        <span class="perk-pill">✳ Papas Crocantes Doble Cocción</span>
-                        <span class="perk-pill">✳ Envíos Rápidos en Del Viso</span>
+                        <span class="perk-pill">✳ Envíos en Del Viso/Savio</span>
                     </div>
                 </div>
             </div>
@@ -1536,7 +1748,7 @@
         <section class="section-wrap map-section" id="ubicacion" aria-labelledby="map-title">
             <div class="section-head">
                 <div>
-                    <span class="eyebrow">LOCAL OFICIAL & GOOGLE MAPS</span>
+                    <span class="eyebrow">LOCAL</span>
                     <h2 id="map-title">DÓNDE ESTAMOS<br>& CÓMO LLEGAR.</h2>
                 </div>
                 <p>
@@ -1550,7 +1762,7 @@
                     <div class="info-row">
                         <span class="pin-icon">📍</span>
                         <div>
-                            <h4>Dirección del Local</h4>
+                            <h4>Dirección</h4>
                             <p><strong>Av. Constitución 371</strong>, Del Viso<br>Provincia de Buenos Aires (B1620)<br><small style="color:var(--muted); font-size:0.75rem;">Plus Code: H6QG+QV Del Viso</small></p>
                         </div>
                     </div>
@@ -1558,7 +1770,7 @@
                     <div class="info-row">
                         <span class="pin-icon">🕒</span>
                         <div>
-                            <h4>Horario de Atención</h4>
+                            <h4>Horario</h4>
                             <p>Todos los días:<br><strong>11:00 a 00:00 hs.</strong></p>
                             <span class="tag-active-hours">Abierto de corrido</span>
                         </div>
@@ -1567,7 +1779,7 @@
                     <div class="info-row">
                         <span class="pin-icon">📞</span>
                         <div>
-                            <h4>Teléfono & WhatsApp</h4>
+                            <h4>Teléfono</h4>
                             <p><a href="tel:01164158057">011 6415-8057</a></p>
                         </div>
                     </div>
@@ -1575,13 +1787,13 @@
                     <div class="info-row">
                         <span class="pin-icon">📸</span>
                         <div>
-                            <h4>Instagram Oficial</h4>
+                            <h4>IG</h4>
                             <p><a href="https://www.instagram.com/papota_oficial/" target="_blank" rel="noopener noreferrer">@papota_oficial ↗</a></p>
                         </div>
                     </div>
 
                     <a href="https://maps.app.goo.gl/3WmCiwgQY2oZThhP9" target="_blank" rel="noopener noreferrer" class="btn-maps-action">
-                        <span>ABRIR EN GOOGLE MAPS ↗</span>
+                        <span>NAVEGA ↗</span>
                     </a>
                 </div>
 
@@ -1589,7 +1801,7 @@
                 <div class="map-frame-wrapper">
                     <div class="map-pin-overlay">
                         <span class="red-dot"></span>
-                        <span>La Papota · Av. Constitución 371 (Pin Rojo)</span>
+                        <span>La Papota · Av. Constitución 371</span>
                     </div>
                     <iframe 
                         title="Mapa interactivo con pin rojo de La Papota en Del Viso"
@@ -1606,9 +1818,9 @@
         <section class="order-section" id="pedidos" aria-labelledby="order-title">
             <div class="order-wrap">
                 <span class="eyebrow">EL PRÓXIMO PASO ES TUYO</span>
-                <h2 id="order-title">¿QUÉ ESPERÁS<br><span>PARA MORDER?</span></h2>
+                <h2 id="order-title">¿QUÉ ESPERÁS<br><span>PARA DARTE PAPOTA?</span></h2>
                 <p>
-                    Consultá las variedades, promos para compartir y opciones de entrega. Mandanos un mensaje directo y te preparamos el pedido al toque.
+                    Consultá por promos para compartir, o pedidos de gran volumen con pre encargo. Mandanos un mensaje.
                 </p>
                 <a class="btn-whatsapp-cta" href="https://wa.me/5491164158057?text=Hola%20La%20Papota%2C%20quiero%20hacer%20un%20pedido!" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -1643,6 +1855,54 @@
         </svg>
         <span class="wa-text">Acá!</span>
     </a>
+
+    <!-- Script Navegación Mobile & Hamburguesa -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                const isOpen = hamburgerBtn.classList.toggle('is-active');
+                mobileMenu.classList.toggle('is-active', isOpen);
+                mobileNavOverlay.classList.toggle('is-active', isOpen);
+                hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                mobileMenu.setAttribute('aria-hidden', !isOpen);
+                mobileNavOverlay.setAttribute('aria-hidden', !isOpen);
+
+                if (isOpen) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function closeMenu() {
+                hamburgerBtn.classList.remove('is-active');
+                mobileMenu.classList.remove('is-active');
+                mobileNavOverlay.classList.remove('is-active');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileNavOverlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            hamburgerBtn.addEventListener('click', toggleMenu);
+            mobileNavOverlay.addEventListener('click', closeMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && hamburgerBtn.classList.contains('is-active')) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
