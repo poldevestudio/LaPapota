@@ -335,10 +335,15 @@
         .category-title {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 12px;
             margin-bottom: 22px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--line);
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .category-title h2 {
@@ -346,6 +351,8 @@
             font-size: 1.85rem;
             text-transform: uppercase;
             letter-spacing: 0.02em;
+            word-break: break-word;
+            line-height: 1.15;
         }
 
         .category-badge-pill {
@@ -354,15 +361,19 @@
             color: var(--gold);
             background: rgba(255, 194, 71, 0.1);
             border: 1px solid rgba(255, 194, 71, 0.3);
-            padding: 3px 10px;
+            padding: 4px 11px;
             border-radius: 50px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .product-card {
@@ -371,10 +382,14 @@
             border-radius: var(--radius-md);
             padding: 16px;
             display: flex;
-            gap: 18px;
+            gap: 16px;
             align-items: center;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
             position: relative;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .product-card:hover {
@@ -527,31 +542,64 @@
             background: #1e1916;
             border: 2px solid var(--orange);
             border-radius: 50px;
-            padding: 10px 14px 10px 22px;
+            padding: 8px 12px 8px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 100, 45, 0.35);
             z-index: 100;
             transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-sizing: border-box;
         }
 
         .sticky-cart-bar.active {
             transform: translateX(-50%) translateY(0);
         }
 
+        .cart-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .btn-clear-cart {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clear-cart:hover, .btn-clear-cart:active {
+            color: #ffffff;
+            background: rgba(255, 77, 79, 0.25);
+            border-color: #ff4d4f;
+            transform: scale(1.08);
+        }
+
         .cart-bar-info {
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
 
         .cart-bar-count {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--gold);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.06em;
+            white-space: nowrap;
         }
 
         .cart-bar-total {
@@ -560,6 +608,7 @@
             font-weight: 700;
             color: #ffffff;
             line-height: 1.1;
+            white-space: nowrap;
         }
 
         .btn-view-order {
@@ -893,14 +942,81 @@
         }
 
         @media (max-width: 520px) {
+            .menu-container {
+                padding: 20px 4%;
+            }
+
+            .category-title {
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .category-title h2 {
+                font-size: 1.45rem;
+            }
+
+            .category-badge-pill {
+                font-size: 0.68rem;
+                padding: 3px 8px;
+            }
+
             .product-card {
                 gap: 12px;
                 padding: 12px;
             }
 
             .product-photo {
-                width: 85px;
-                height: 85px;
+                width: 82px;
+                height: 82px;
+                min-width: 82px;
+            }
+
+            .product-info h3 {
+                font-size: 1.15rem;
+                white-space: normal;
+                line-height: 1.2;
+            }
+
+            .product-desc {
+                font-size: 0.78rem;
+                margin-bottom: 8px;
+            }
+
+            .product-price {
+                font-size: 1.2rem;
+            }
+
+            .btn-add-item {
+                padding: 6px 12px;
+                font-size: 0.74rem;
+            }
+
+            .sticky-cart-bar {
+                width: 95%;
+                bottom: 12px;
+                padding: 7px 10px 7px 12px;
+                gap: 8px;
+            }
+
+            .btn-clear-cart {
+                width: 30px;
+                height: 30px;
+                min-width: 30px;
+                font-size: 0.8rem;
+            }
+
+            .cart-bar-total {
+                font-size: 1.2rem;
+            }
+
+            .cart-bar-count {
+                font-size: 0.7rem;
+            }
+
+            .btn-view-order {
+                padding: 9px 15px;
+                font-size: 0.8rem;
+                gap: 6px;
             }
 
             .payment-options {
@@ -955,9 +1071,14 @@
 
     <!-- Barra Flotante Inferior de Pedido -->
     <aside class="sticky-cart-bar" id="stickyCartBar" aria-label="Resumen de Carrito">
-        <div class="cart-bar-info">
-            <span class="cart-bar-count" id="cartBarCount">0 productos seleccionados</span>
-            <span class="cart-bar-total" id="cartBarTotal">$0</span>
+        <div class="cart-bar-left">
+            <button class="btn-clear-cart" onclick="clearCart()" aria-label="Vaciar carrito" title="Vaciar pedido">
+                <span>✕</span>
+            </button>
+            <div class="cart-bar-info">
+                <span class="cart-bar-count" id="cartBarCount">0 productos seleccionados</span>
+                <span class="cart-bar-total" id="cartBarTotal">$0</span>
+            </div>
         </div>
         <button class="btn-view-order" onclick="openCartModal()">
             <span>Ver Pedido</span>
@@ -1339,6 +1460,18 @@
         // Guardar en Storage
         function saveCart() {
             localStorage.setItem('lapapota_cart', JSON.stringify(cart));
+        }
+
+        // Vaciar carrito por completo
+        function clearCart() {
+            if (Object.keys(cart).length === 0) return;
+            if (confirm("¿Querés vaciar el pedido y reiniciar?")) {
+                cart = {};
+                saveCart();
+                renderMenu();
+                updateCartUI();
+                closeCartModal();
+            }
         }
 
         // Actualizar totales de la barra flotante y header
